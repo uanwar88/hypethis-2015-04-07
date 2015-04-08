@@ -1,5 +1,45 @@
 Rails.application.routes.draw do
-  
+  root "cities#index"
+
+  scope path: "/users", controller: :users do
+    get "/" => :index, as: "users"
+    get "/:username" => :show, as: "user"
+    get "/new" => :new, as: "new_user"
+    post "/" => :create
+    get "/edit" => :edit, as: "edit_user"
+    post "/edit" => :update
+    delete "/:username" => :destroy, as: "delete_user"
+    get "/:username/starred" => :starred
+  end
+
+  scope path: "/users", controller: :sessions do
+    get "/login" => "sessions#new"
+    post "/login" => "sessions#create"
+    get "/logout" => "sessions#destroy"
+  end
+
+  scope path: "/:city", controller: :cities do
+    get "/" => :show, as: "city"
+    get "/:year" => :year
+    get "/:year/:month" => :month
+    get "/:year/:month/:day" => :day
+    get "/:year/top" => :topyear
+    get "/:year/:month/top" => :topmonth
+  end
+
+  get ":city/events/new" => "events#new", as: "new_event"
+
+  scope path: "/events", controller: :events do
+    post "/" => :create
+    get "/:id" => :show, as: "event"
+    get "/:id/edit" => :edit, as: "edit_event"
+    post "/:id" => :update
+    delete "/:id" => :destroy, as: "delete_event"
+  end
+
+  scope path: ":city/categories", controller: :categories do
+    get "/:name" => "categories#show"
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

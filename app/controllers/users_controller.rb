@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @events = User.find(1).starred_events
+    #find all users?
   end
 
   def show
@@ -22,5 +22,6 @@ class UsersController < ApplicationController
   end
 
   def starred
+    @events = User.find(1).starred_events
   end
 end

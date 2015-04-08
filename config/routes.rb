@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get "/:year/:month/:day" => :day
     get "/:year/top" => :topyear
     get "/:year/:month/top" => :topmonth
+    get "/:year/week/:week" => :week
   end
 
   get ":city/events/new" => "events#new", as: "new_event"

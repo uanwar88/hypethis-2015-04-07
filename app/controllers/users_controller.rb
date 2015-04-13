@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    #show profile and events created by user
     @user = User.find_by_username(:username)
     @events = @user.events
   end
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find_by_username(params[:username])
   end
 
   def update

@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   end
 
   scope path: "/users", controller: :sessions do
-    get "/login" => "sessions#new"
+    get "/login" => "sessions#new", as: "login"
     post "/login" => "sessions#create"
-    get "/logout" => "sessions#destroy"
+    get "/logout" => "sessions#destroy", as: "logout"
   end
 
   scope path: "/:city", controller: :cities do

@@ -27,9 +27,18 @@ class UsersController < ApplicationController
   end
 
   def update
+    edit_params = params.require(:user).permit(:email, :username, :company, :site, :avatar)
+    @user = User.find_by_username(params[:username])
+    if @user.update(edit_params)
+      redirect_to user_path(@user.username), notice: "Profile updated successfully"
+    else
+      flash.now[:notice] = "Please fix the following errors:"
+      render :edit
   end
 
   def destroy
+    User.delete(current_user.id)
+    redirect_to login_path, notice: "Your account was successfully deleted"
   end
 
   def starred

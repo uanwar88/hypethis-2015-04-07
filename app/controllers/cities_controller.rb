@@ -29,14 +29,12 @@ class CitiesController < ApplicationController
   def topyear
     time = DateTime.new(params[:year])
     @events = City.find_by_name(params[:city]).events.
-    where("start_time >= ? and start_time <= ?", time, time.end_of_year).
-    order(total_stars: :desc)
+    where("start_time >= ? and start_time <= ?", time, time.end_of_year).order(total_stars: :desc)
   end
 
   def topmonth
     time = DateTime.new(params[:year], params[:month])
     @events = City.find_by_name(params[:city]).events.
-    where("start_time >= ? and start_time <= ?", time, time.end_of_month).
-    order(total_stars: :desc)
+    where("start_time >= ? and start_time <= ?", time, time.end_of_month).order(total_stars: :desc)
   end
 end

@@ -20,6 +20,12 @@ class CitiesController < ApplicationController
     where("start_time >= ? and start_time <= ?", time, time.end_of_month).order(start_time: :asc)
   end
 
+  def day
+    time =DateTime.new(params[:year], params[:month],params[:day])
+    @events = City.find_by_name(params[:city]).events.
+    where("start_time >= ? and start_time <= ?", time, time.end_of_day).order(start_time: :asc)
+  end
+
   def week
     time = DateTime.commercial(DateTime.now.year,params[:week].to_i)
     @events = City.find_by_name(params[:city]).events.

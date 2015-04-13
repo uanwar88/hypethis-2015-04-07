@@ -4,12 +4,21 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by_username(:username)
+    @events = @user.events
   end
 
   def new
   end
 
   def create
+    req_params = params.require(:user).permit(:username, :password, :password_confirmation, :email)
+    user = User.new(req_params)
+    if user.save
+      redirect_to edit_user_path(user.username)
+    else
+      redirect_to new_user_path
+    end
   end
 
   def edit
@@ -22,6 +31,6 @@ class UsersController < ApplicationController
   end
 
   def starred
-    @events = User.find(1).starred_events
+    @events = User.find_by_username(params[:username]).starred_events
   end
 end

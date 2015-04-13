@@ -3,13 +3,16 @@ Rails.application.routes.draw do
 
   scope path: "/users", controller: :users do
     get "/" => :index, as: "users"
-    get "/:username" => :show, as: "user"
     get "/new" => :new, as: "new_user"
-    post "/" => :create
+    post "/" => :create, as: "create_user"
+  end
+
+  scope path: "/:username", controller: :users do
+    get "/" => :show, as: "user"
     get "/edit" => :edit, as: "edit_user"
-    post "/edit" => :update
-    delete "/:username" => :destroy, as: "delete_user"
-    get "/:username/starred" => :starred
+    patch "/edit" => :update, as: "patch_user"
+    delete "/" => :destroy, as: "delete_user"
+    get "/starred" => :starred, as: "user_starred"
   end
 
   scope path: "/users", controller: :sessions do

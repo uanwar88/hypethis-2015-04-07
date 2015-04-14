@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.delete(current_user.id)
-    redirect_to login_path, notice: "Your account was successfully deleted"
+    redirect_to login_path, notice: "Your account has been deleted"
   end
 
   def starred

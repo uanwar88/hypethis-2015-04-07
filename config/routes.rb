@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   scope path: ":city/categories", controller: :categories do
-    get "/:name" => "categories#show"
+    get "/:category_id" => "categories#show"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

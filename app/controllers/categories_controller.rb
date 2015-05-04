@@ -35,13 +35,13 @@ class CategoriesController < ApplicationController
 
   def topyear
     time = DateTime.new(params[:year])
-    @events = City.find_by_city(params[:city]).events.category(params[:category_id]).between_dates(time, time.end_of_year).order(total_stars: :desc)
+    @events = City.find_by_city(params[:city]).events.category(params[:category_id]).between_dates(time, time.end_of_year).order(stars_count: :desc)
     render :show
   end
 
   def topmonth
     time = DateTime.new(params[:year], params[:month])
-    @events = City.find_by_city(params[:city]).events.category(params[:category_id]).between_dates(time, time.end_of_month).order(total_stars: :desc)
+    @events = City.find_by_city(params[:city]).events.category(params[:category_id]).between_dates(time, time.end_of_month).order(stars_count: :desc)
     render :show
   end
 

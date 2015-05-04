@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get ":city/events/new" => "events#new", as: "new_event"
 
   scope path: "/events", controller: :events do
+    get "/new" => :new, as: "new_event"
     post "/" => :create
     get "/:id" => :show, as: "event"
     get "/:id/edit" => :edit, as: "edit_event"

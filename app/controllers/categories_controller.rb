@@ -1,7 +1,4 @@
 class CategoriesController < ApplicationController
-  scope :between_dates, lambda{|start_date,end_date| where("start_time >= ? and start_time <= ?", start_date, end_date) }
-  scope :category, ->(category_id) { where(category_id:  category_id) }
-
   def index
   end
 

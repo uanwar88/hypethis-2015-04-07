@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     else
       flash.now[:notice] = "Please fix the following errors:"
       render :edit
+    end
   end
 
   def destroy

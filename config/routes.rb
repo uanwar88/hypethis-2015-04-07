@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     post "/" => :create, as: "create_user"
   end
 
-  scope path: "/:username", controller: :users do
+  scope path: "/users/:username", controller: :users do
     get "/" => :show, as: "user"
     get "/edit" => :edit, as: "edit_user"
     patch "/edit" => :update, as: "patch_user"

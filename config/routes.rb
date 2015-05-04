@@ -22,13 +22,13 @@ Rails.application.routes.draw do
   end
 
   scope path: "/:city", controller: :cities do
+    get "/:year/top" => :topyear
+    get "/:year/:month/top" => :topmonth
+    get "/:year/week/:week" => :week
     get "/" => :show, as: "city"
     get "/:year" => :year
     get "/:year/:month" => :month
     get "/:year/:month/:day" => :day
-    get "/:year/top" => :topyear
-    get "/:year/:month/top" => :topmonth
-    get "/:year/week/:week" => :week
   end
 
   get ":city/events/new" => "events#new", as: "new_event"
@@ -41,13 +41,13 @@ Rails.application.routes.draw do
     delete "/:id" => :destroy, as: "delete_event"
   end
 
-  scope path: ":city/categories", controller: :categories do
+  scope path: "/:city/categories", controller: :categories do
+    get "/:category_id/:year/top" => :topyear
+    get "/:category_id/:year/:month/top" => :topmonth
+    get "/:category_id/:year/week/:week" => :week
     get "/:category_id" => :show
     get "/:category_id/:year" => :year
     get "/:category_id/:year/:month" => :month
     get "/:category_id/:year/:month/:day" => :day
-    get "/:category_id/:year/top" => :topyear
-    get "/:category_id/:year/:month/top" => :topmonth
-    get "/:category_id/:year/week/:week" => :week
   end
 end

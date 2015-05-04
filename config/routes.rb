@@ -21,6 +21,16 @@ Rails.application.routes.draw do
     get "/logout" => "sessions#destroy", as: "logout"
   end
 
+  scope path: "/:city/categories", controller: :categories do
+    get "/:category_id/:year/top" => :topyear
+    get "/:category_id/:year/:month/top" => :topmonth
+    get "/:category_id/:year/week/:week" => :week
+    get "/:category_id" => :show
+    get "/:category_id/:year" => :year
+    get "/:category_id/:year/:month" => :month
+    get "/:category_id/:year/:month/:day" => :day
+  end
+
   scope path: "/:city", controller: :cities do
     get "/:year/top" => :topyear
     get "/:year/:month/top" => :topmonth
@@ -39,15 +49,5 @@ Rails.application.routes.draw do
     get "/:id/edit" => :edit, as: "edit_event"
     post "/:id" => :update
     delete "/:id" => :destroy, as: "delete_event"
-  end
-
-  scope path: "/:city/categories", controller: :categories do
-    get "/:category_id/:year/top" => :topyear
-    get "/:category_id/:year/:month/top" => :topmonth
-    get "/:category_id/:year/week/:week" => :week
-    get "/:category_id" => :show
-    get "/:category_id/:year" => :year
-    get "/:category_id/:year/:month" => :month
-    get "/:category_id/:year/:month/:day" => :day
   end
 end
